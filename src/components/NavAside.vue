@@ -10,11 +10,11 @@
 
       <!-- Profile -->
       <div class="profile_with_image">
-        <img class="profile_image" src="../assets/images/profile.png" alt="image-profile">
+        <img class="profile_image" :src="require('@/assets/'+this.$store.getters.getUrlImage)" alt="image-profile">
 
         <div class="profile_name">
           <p>Welcome</p>
-          <p class="fullname">Mario Rossi</p>
+          <p class="fullname">{{this.$store.getters.getFirstName}} {{this.$store.getters.getLastName}}</p>
         </div>
 
       </div>
@@ -26,16 +26,23 @@
       </div>
       <!-- /General -->
 
-      <!-- Home Section -->
-      <section id="home">
-        <div class="top_home_section">
-          <md-icon>thumb_up</md-icon>
+      <!-- Sections -->
+      <section v-for="(section, index) in sections" :key="index">
+          <div class="top_home_section">
+            <div class="section_name">
+              <i class="material-icons">{{section.icon}}</i>
+              <p>{{section.name}}</p>
+            </div>
+    
+          <i class="material-icons">keyboard_arrow_down</i>
+
         </div>
       </section>
-      <!-- /Home Section -->
+      <!-- Sections -->
 
 
     </div>
+    <p>{{this.$store.getters.getSaluto}}</p>
   </div>
 </template>
 
@@ -44,6 +51,15 @@ export default {
   methods: {
   },
   name: "NavAside",
+
+  data(){
+    return{
+      sections: []
+    }
+  },
+  mounted(){
+    this.sections = this.$store.getters.getSections;
+  }
 
 };
 </script>
@@ -94,6 +110,27 @@ export default {
       margin-top: 35px;
       padding-bottom: 12px;
       border-bottom: 3px solid #fff;
+    }
+
+    section{
+      .top_home_section{
+        display: flex;
+        justify-content: space-between;
+        padding-top: 20px;
+        
+        .section_name{
+          display: flex;
+          align-items: center;
+
+          i{
+            margin-right: 10px;
+          }
+        }
+
+        p{
+          flex-basis: 70%;
+        }
+      }
     }
   }
 

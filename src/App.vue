@@ -13,6 +13,10 @@
   box-sizing: border-box;
 }
 
+i:hover:not(.section_name i){
+  cursor: pointer;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
